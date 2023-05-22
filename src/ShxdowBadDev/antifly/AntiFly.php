@@ -24,27 +24,30 @@ public function onEnable() : void {
 
    public function onEntityDamage(EntityDamageEvent $event) {
 
-    $victim = $event->getEntity();
+    $victima = $event->getEntity();
 
-    if ($victim instanceof Player && $event instanceof EntityDamageByEntityEvent) {
+    if ($victima instanceof Player && $event instanceof EntityDamageByEntityEvent) {
 
-        $attacker = $event->getDamager();
+        $atacante = $event->getDamager();
 
-        if ($attacker instanceof Player) {
+        if ($atacante instanceof Player) {
+           #This part check if these flying and it deactivates it if you get damage
 
-            if ($victim->isFlying() || $victim->getAllowFlight()) {
+            if ($victima->isFlying() || $victima->getAllowFlight()) {
 
-                $victim->setFlying(false);
+                $victima->setFlying(false);
 
-                $victim->setAllowFlight(false);
+                $victima->setAllowFlight(false);
 
             }
+           #This part of the plugin checks if these Flying and it deactivates it if you attacked
 
-            if ($attacker->isFlying() || $attacker->getAllowFlight()) {
+            if ($atacante->isFlying() || $atacante->getAllowFlight()) {
+               #There the code turned off the fly of the attacker
+ 
+                $atacante->setFlying(false);
 
-                $attacker->setFlying(false);
-
-                $attacker->setAllowFlight(false);
+                $atacante->setAllowFlight(false);
 
             }
 
